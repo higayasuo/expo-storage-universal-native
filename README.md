@@ -1,2 +1,2 @@
 # expo-storage-universal-native
-This project is the Native implementation of expo-storage-universal.
+This project is the NATIVE implementation of expo-storage-universal.
