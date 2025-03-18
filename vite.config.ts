@@ -14,7 +14,10 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
     },
     rollupOptions: {
-      external: [],
+      external: [
+        '@react-native-async-storage/async-storage',
+        'expo-secure-store',
+      ],
       output: {
         globals: {},
       },
