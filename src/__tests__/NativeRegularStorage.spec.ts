@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { NativeRegularStorage } from '../NativeRegularStorage';
+import type { AsyncStorageStatic } from '@react-native-async-storage/async-storage';
 
 // Mock AsyncStorage
 vi.mock('@react-native-async-storage/async-storage', () => ({
@@ -7,11 +7,19 @@ vi.mock('@react-native-async-storage/async-storage', () => ({
     getItem: vi.fn(),
     setItem: vi.fn(),
     removeItem: vi.fn(),
-  },
+    mergeItem: vi.fn(),
+    clear: vi.fn(),
+    getAllKeys: vi.fn(),
+    flushGetRequests: vi.fn(),
+    multiGet: vi.fn(),
+    multiSet: vi.fn(),
+    multiRemove: vi.fn(),
+    multiMerge: vi.fn(),
+  } satisfies AsyncStorageStatic,
 }));
 
-// Import AsyncStorage after the mock is defined
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeRegularStorage } from '../NativeRegularStorage';
 
 describe('NativeRegularStorage', () => {
   beforeEach(() => {
@@ -113,7 +121,9 @@ describe('NativeRegularStorage', () => {
       vi.mocked(AsyncStorage.setItem).mockRejectedValue(error);
 
       // Act & Assert
-      await expect(storage.save(testKey, testValue)).rejects.toThrow('AsyncStorage error');
+      await expect(storage.save(testKey, testValue)).rejects.toThrow(
+        'AsyncStorage error',
+      );
       expect(AsyncStorage.setItem).toHaveBeenCalledWith(testKey, testValue);
     });
 
@@ -127,7 +137,9 @@ describe('NativeRegularStorage', () => {
       vi.mocked(AsyncStorage.removeItem).mockRejectedValue(error);
 
       // Act & Assert
-      await expect(storage.remove(testKey)).rejects.toThrow('AsyncStorage error');
+      await expect(storage.remove(testKey)).rejects.toThrow(
+        'AsyncStorage error',
+      );
       expect(AsyncStorage.removeItem).toHaveBeenCalledWith(testKey);
     });
   });
