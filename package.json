@@ -1,6 +1,6 @@
 {
   "name": "expo-storage-universal-native",
-  "version": "0.3.2n",
+  "version": "0.3.2",
   "description": "Native implementation of expo-storage-universal",
   "type": "module",
   "main": "./dist/index.cjs",
