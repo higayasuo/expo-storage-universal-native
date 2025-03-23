@@ -1,6 +1,6 @@
 {
   "name": "expo-storage-universal-native",
-  "version": "0.3.1",
+  "version": "0.3.2n",
   "description": "Native implementation of expo-storage-universal",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -47,6 +47,6 @@
     "expo-secure-store": "~14.0.1"
   },
   "dependencies": {
-    "expo-storage-universal": "^0.3.1"
+    "expo-storage-universal": "^0.3.2"
   }
 }

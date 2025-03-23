@@ -1,7 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AsyncStorageModule, {
+  AsyncStorageStatic,
+} from '@react-native-async-storage/async-storage';
 import { Storage } from 'expo-storage-universal';
 
+const AsyncStorage = ((AsyncStorageModule as any).default ??
+  AsyncStorageModule) as AsyncStorageStatic;
 /**
  * NativeRegularStorage class implementing the Storage interface for native platforms.
  * Utilizes AsyncStorage for non-secure data storage on iOS and Android.
@@ -20,7 +23,12 @@ export class NativeRegularStorage implements Storage {
    * const value = await storage.find('userId');
    */
   async find(key: string): Promise<string | undefined> {
-    return (await AsyncStorage.getItem(key)) ?? undefined;
+    try {
+      return (await AsyncStorage.getItem(key)) ?? undefined;
+    } catch (error) {
+      console.error('Error finding item in AsyncStorage:', error);
+      throw error;
+    }
   }
 
   /**
