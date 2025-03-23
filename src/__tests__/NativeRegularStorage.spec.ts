@@ -1,4 +1,12 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  vi,
+  beforeAll,
+  afterAll,
+} from 'vitest';
 import type { AsyncStorageStatic } from '@react-native-async-storage/async-storage';
 
 // Mock AsyncStorage
@@ -20,6 +28,21 @@ vi.mock('@react-native-async-storage/async-storage', () => ({
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeRegularStorage } from '../NativeRegularStorage';
+
+// Suppress console.error for expected error messages
+const originalError = console.error;
+beforeAll(() => {
+  console.error = (...args) => {
+    if (args[0]?.includes('Error finding item in AsyncStorage')) {
+      return;
+    }
+    originalError.call(console, ...args);
+  };
+});
+
+afterAll(() => {
+  console.error = originalError;
+});
 
 describe('NativeRegularStorage', () => {
   beforeEach(() => {
