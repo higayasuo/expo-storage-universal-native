@@ -11,23 +11,18 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
+      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     rollupOptions: {
       external: [
         '@react-native-async-storage/async-storage',
         'expo-secure-store',
+        'expo-storage-universal',
       ],
-      output: {
-        globals: {},
-      },
     },
-    outDir: 'dist',
-    emptyOutDir: true,
   },
   plugins: [
     dts({
-      insertTypesEntry: true,
       rollupTypes: true,
     }),
   ],

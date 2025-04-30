@@ -10,7 +10,7 @@ Native implementation of [expo-storage-universal](https://github.com/higayasuo/e
 ## Installation
 
 ```bash
-npm install expo-storage-universal-native
+npm install expo-storage-universal-native expo-storage-universal
 ```
 
 ## Usage
