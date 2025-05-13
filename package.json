@@ -1,6 +1,6 @@
 {
   "name": "expo-storage-universal-native",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Native implementation of expo-storage-universal",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -44,6 +44,6 @@
   "peerDependencies": {
     "@react-native-async-storage/async-storage": "*",
     "expo-secure-store": "*",
-    "expo-storage-universal": "^0.3.5"
+    "expo-storage-universal": "^0.3.6"
   }
 }
